@@ -1,6 +1,7 @@
 package com.example.gccoffee.model;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.util.Assert;
@@ -18,6 +19,7 @@ public class Email {
 
     private static final Pattern EMAIL_REGEX = Pattern.compile("\\b[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,4}\\b");
 
+    @Builder
     public Email(String address) {
         Assert.notNull(address, "이메일이 비었습니다.");
         isTrue(address.length() >= 4 && address.length() <= 50, "이메일 주소 길이가 알맞지 않습니다");
