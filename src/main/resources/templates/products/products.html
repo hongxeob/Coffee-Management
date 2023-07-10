@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid" style="max-width: 2000px">
+    <div class="py-5 text-center">
+        <h2>상품 목록</h2></div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col">
+            <button class="btn btn-primary float-end"
+                    onclick="location.href='saveForm.html'"
+                    th:onclick="|location.href='@{/products/new}'|"
+                    type="button">상품 등록
+            </button>
+        </div>
+    </div>
+    <hr class="my-4">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>상품 이름</th>
+                <th>카테고리</th>
+                <th>상품 가격</th>
+                <th>상품 설명</th>
+                <th>생성일</th>
+                <th>수정일</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tr>
+            <tr th:each="product : ${products}" th:object="${product}">
+                <td><a href="product.html" th:href="@{/products/{productId}(productId=${product.getProductId()})}"
+                       th:text="${product.getProductId()}">상품 ID</a></td>
+                <td><a th:text="${product.getProductName()}">상품 이름</a></td>
+                <td th:text="${product.getCategory()}">카테고리</td>
+                <td th:text="${product.getPrice()}">상품 금액</td>
+                <td th:text="${product.getDescription()}">상품 설명</td>
+                <td th:text="${product.getCreatedAt()}">생성일</td>
+                <td th:text="${product.getUpdatedAt()}">수정일</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
